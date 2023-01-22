@@ -21,31 +21,6 @@ public:
 			p->is_word_ = true;
 		}
 	}
-	bool find_subsequence(string sentence, string pattern) {
-	    int n = pattern.length(), m = sentence.length();
-	    int i = 0, j = 0;
-	    while (i < n && j < m) {
-		if (pattern.charAt(i) == sentence.charAt(j))
-		    i++;
-		j++;
-	    }
-	    /*If i reaches end of pattern,that mean we found all
-	    characters of pattern in sentence,
-	    so pattern is subsequence of sentence, else not*/
-	    return i == n;
-	}
-	
-	vector<string> fuzzy_pattern(vector<string> s, string word) {
-		vector<string> ans;
-		int n = s.size();
-		for(int i = 0; i < n; i++){
-			if(find_subsequence(s[i], word){
-				ans.push_back(s[i]);
-			}
-		   }
-		return ans;
-	   }
-		
 
 	std::vector<std::string> pattern(const std::string & prefix) const
 	{
@@ -84,17 +59,10 @@ private:
 
 int main(int, char **)
 {
-	const auto t = pattern_detector({"This", "is", "a", "string", ".", "Another", "line", "with", "string", ".", "Just", "a", "simple", "line", "."});
+	const auto t = pattern_detector({"This", "is", "a", "string",".", "Another", "line", "with", "string", ".", "Just", "a", "simple", "line", "."});
 
-	const auto result = t.pattern("Ano");
+	const auto result = t.pattern("string");
 	std::copy(begin(result), end(result), std::ostream_iterator<std::string>(std::cout, "\n"));
-	
-	vector<string> s = {"This is a string.",
-			"Another line with string.",
-			"Just a simple line."
-			    };
-	vector<string> fuzzy_result = pattern_detector.fuzzy_pattern(s, "si");
-	std::copy(begin(fuzzy_result), end(fuzzy_result), std::ostream_iterator<std::string>(std::cout, "\n"));
 
 	return 0;
 }
